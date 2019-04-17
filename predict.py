@@ -51,17 +51,7 @@ def genAqhiByL(location):
         aqhi =3
         if (result):
             aqhi=chValue(result['aqhi'])
-        li.append(x['locationCode'])
-        li.append(x['dateTime'].hour)
-        li.append(x['dateTime'].toordinal())
-        li.append(chValue(x['CO']))
-        li.append(chValue(x['NO2']))
-        li.append(chValue(x['O3']))
-        li.append(chValue(x['SO2']))
-        li.append(aqhi)
-    li2.append(li)
     sc = StandardScaler()
-    li2=sc.fit_transform(li2)
     pre1=numpy.random.choice(numpy.arange(3, 6), p=[0.2,0.8,0.0])
     preData = {"dateTime":datetime.datetime.now() + timedelta(hours=1),"location":location,
                         "locationCode":lcode,"paqhi":str(pre1)}
