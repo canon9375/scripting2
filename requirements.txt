@@ -1,0 +1,14 @@
+APScheduler==3.0.0
+django
+gunicorn
+django-heroku
+datetime
+pandas
+numpy 
+datetime
+requests
+bs4
+pymongo 
+lxml
+sklearn
+
