@@ -1,1 +1,2 @@
-script: python script.py
+script:python script.py
+script:python predict.py
