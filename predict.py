@@ -40,6 +40,8 @@ def genAqhiByL(location):
     collection = conn.fyp.airPollution
     coll2 = conn.fyp.currentAQHI
     lcode = getLocationCode(location)
+    if lcode == 17:
+        False
     query = { 'dateTime' : {"$lt":datetime.datetime.now(), '$gt':datetime.datetime.now() - timedelta(hours=8)},"locationCode":lcode}
     li2  = []
     li=[]
@@ -49,20 +51,49 @@ def genAqhiByL(location):
         aqhi =3
         if (result):
             aqhi=chValue(result['aqhi'])
-    sc = StandardScaler()
-    pre1=numpy.random.choice(numpy.arange(3, 6), p=[0.2,0.8,0.0])
+     #  1
+    t =  datetime.datetime.now() 
+    fmt = t.strftime('%Y-%m-%d %H')
+    time = parse(fmt)- timedelta(hours=0.5)
+    ch =int(t.strftime('%M'))
+    if ch > 35:
+        time = parse(fmt)+ timedelta(hours=0.5)
+    get1 = coll2.find({"locationCode":lcode , 'time':{"$eq":time}}).sort("time",-1).limit(1)
+    pre1=3
+    for b in get1:
+        pre1 = b['aqhi']
     preData = {"dateTime":datetime.datetime.now() + timedelta(hours=1),"location":location,
                         "locationCode":lcode,"paqhi":str(pre1)}
+    #  
+#     print(preData)
     inToPA(preData)
-    
-    pre2=numpy.random.choice(numpy.arange(3, 6), p=[0.2,0.8,0.0])
+    #   2  
+    t =  datetime.datetime.now() 
+    fmt = t.strftime('%Y-%m-%d %H')
+    time = parse(fmt)- timedelta(hours=1.5)
+    ch =int(t.strftime('%M'))
+    get1 = coll2.find({"locationCode":lcode , 'time':{"$eq":time}}).sort("time",-1).limit(1)
+    pre2=3
+    for b in get1:
+        pre2 = b['aqhi']
+    #         
     preData = {"dateTime":datetime.datetime.now() + timedelta(hours=2),"location":location,
                     "locationCode":lcode,"paqhi":str(pre2)}
+#     print(preData)
     inToPA(preData)
-    
-    pre3=numpy.random.choice(numpy.arange(3, 6), p=[0.2,0.8,0.0])
+#            3 
+    t =  datetime.datetime.now() 
+    fmt = t.strftime('%Y-%m-%d %H')
+    time = parse(fmt)- timedelta(hours=2.5)
+    ch =int(t.strftime('%M'))
+    get1 = coll2.find({"locationCode":lcode , 'time':{"$eq":time}}).sort("time",-1).limit(1)
+    pre3=3
+    for b in get1:
+        pre3 = b['aqhi']
+    #  
     preData = {"dateTime":datetime.datetime.now() + timedelta(hours=3),"location":location,
                     "locationCode":lcode,"paqhi":str(pre3)}
+#     print(preData)
     inToPA(preData)
 def genData():
     location = ['Central/western','Eastern','Kwun Tong','Sham Shui Po',
@@ -73,4 +104,4 @@ def genData():
         genAqhiByL(x)
 list1 = []
 genData()
-
+print(1)
