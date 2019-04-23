@@ -40,8 +40,6 @@ def genAqhiByL(location):
     collection = conn.fyp.airPollution
     coll2 = conn.fyp.currentAQHI
     lcode = getLocationCode(location)
-    if lcode == 17:
-        False
     query = { 'dateTime' : {"$lt":datetime.datetime.now(), '$gt':datetime.datetime.now() - timedelta(hours=8)},"locationCode":lcode}
     li2  = []
     li=[]
