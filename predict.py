@@ -65,7 +65,7 @@ def genAqhiByL(location):
     preData = {"dateTime":datetime.datetime.now() + timedelta(hours=1),"location":location,
                         "locationCode":lcode,"paqhi":str(pre1)}
     #  
-#     print(preData)
+    print(preData)
     inToPA(preData)
     #   2  
     t =  datetime.datetime.now() 
@@ -79,7 +79,7 @@ def genAqhiByL(location):
     #         
     preData = {"dateTime":datetime.datetime.now() + timedelta(hours=2),"location":location,
                     "locationCode":lcode,"paqhi":str(pre2)}
-#     print(preData)
+    print(preData)
     inToPA(preData)
 #            3 
     t =  datetime.datetime.now() 
@@ -93,7 +93,7 @@ def genAqhiByL(location):
     #  
     preData = {"dateTime":datetime.datetime.now() + timedelta(hours=3),"location":location,
                     "locationCode":lcode,"paqhi":str(pre3)}
-#     print(preData)
+    print(preData)
     inToPA(preData)
 def genData():
     location = ['Central/western','Eastern','Kwun Tong','Sham Shui Po',
